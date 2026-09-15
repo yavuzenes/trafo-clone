@@ -1,0 +1,7 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { Header, Footer, Breadcrumb } from "../components";
+import { references } from "../data";
+export const metadata: Metadata = { title: "Referanslarımız | BES Enerji", description: "BES Enerji'nin trafo bakım, test, onarım ve devreye alma hizmetlerinde çözüm sunduğu kurumları inceleyin.", alternates: { canonical: "/referanslar" } };
+const names=["Alfanar SFA Elektrik","Astor","Ekos Elektrik","MASKİ","Recep Tayyip Erdoğan Üniversitesi","Sanko"];
+export default function Page(){return <><Header/><main><section className="page-hero"><div className="shell"><Breadcrumb items={[{label:"Referanslar"}]}/><span className="kicker light">Çözüm sunduğumuz kurumlar</span><h1>Güvenin arkasında sahadaki işimiz var.</h1><p>Enerji altyapısında bakım, test ve teknik servis ihtiyaçlarına çözüm sunduğumuz kurumlardan seçkiler.</p></div></section><section className="section"><div className="shell reference-page-grid">{references.map((item,index)=><article key={item}><Image src={`/images/${item}`} alt={`${names[index]} logosu`} width={240} height={130}/><h2>{names[index]}</h2></article>)}</div></section></main><Footer/></>}

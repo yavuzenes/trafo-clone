@@ -1,0 +1,2 @@
+import type {MetadataRoute} from "next"; import {services} from "./data";
+export default function sitemap():MetadataRoute.Sitemap{const base="https://besenerji.net";return ["","/hizmetler","/kurumsal","/projeler","/iletisim",...services.map(s=>`/hizmetler/${s.slug}`)].map(url=>({url:`${base}${url}`,lastModified:new Date(),changeFrequency:url===""?"weekly":"monthly",priority:url===""?1:url.startsWith("/hizmetler/")?.8:.7}))}

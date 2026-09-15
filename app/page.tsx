@@ -37,6 +37,19 @@ export default function Home() {
     { name: "Sanko", src: "/images/sanko.jpeg" },
   ];
 
+  const galleryImages = [
+  { src: "/images/resim-1.jpeg", alt: "Referans 1" },
+  { src: "/images/resim-2.jpeg", alt: "Referans 2" },
+  { src: "/images/resim-3.jpeg", alt: "Referans 3" },
+  { src: "/images/resim-4.jpeg", alt: "Referans 4" },
+  { src: "/images/resim-5.jpeg", alt: "Referans 5" },
+  { src: "/images/resim-6.jpeg", alt: "Referans 6" },
+  { src: "/images/resim-7.jpeg", alt: "Referans 7" },
+  { src: "/images/resim-8.jpeg", alt: "Referans 8" },
+  { src: "/images/resim-9.jpeg", alt: "Referans 9" },
+  { src: "/images/resim-10.jpeg", alt: "Referans 10" },
+];
+
   const processSteps = [
     { step: "01", title: "Talebinizi Dinliyoruz", desc: "Telefon veya WhatsApp üzerinden ihtiyacınızı ve tesis bilgilerinizi alıyoruz." },
     { step: "02", title: "Sahayı Değerlendiriyoruz", desc: "Teknik ekibimiz güvenli ve doğru çözüm için gerekli incelemeyi yapıyor." },
@@ -185,6 +198,20 @@ export default function Home() {
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section services" id="galeri">
+        <div className="container">
+          <p className="eyebrow">Galeri</p>
+          <h2>Projelerimizden Kareler</h2>
+          <div className="service-grid">
+            {galleryImages.map((img, index) => (
+              <div key={index} className="gallery-card-fixed">
+                <img src={img.src} alt={img.alt} />
+              </div>
             ))}
           </div>
         </div>

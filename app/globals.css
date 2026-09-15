@@ -558,6 +558,29 @@ footer {
   display: none
 }
 
+/* Galeri kartının yüksekliği, sabitlenmesi ve taşma kontrolü */
+.service-grid .gallery-card-fixed {
+  height: 250px !important; /* Yüksekliği buradan ayarlayabilirsin */
+  align-self: start !important;
+  overflow: hidden !important;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+}
+
+/* Görselin karta tam oturması ve hover efekti */
+.service-grid .gallery-card-fixed img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.service-grid .gallery-card-fixed:hover img {
+  transform: scale(1.05);
+}
+
 @media (max-width:980px) {
 
   .service-grid,

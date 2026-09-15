@@ -1,4 +1,4 @@
-export const company = { phoneDisplay: "+90 553 212 47 61", phone: "+905532124761", email: "e.simsek@besenerji.net", address: "29 Ekim Mahallesi 778. Cadde No: 7/5, Sincan / Ankara" };
+export const company = { phoneDisplay: "+90 553 212 47 61", phone: "+905532124761", email: "e.simsek@besenerji.net", serviceEmail: "servis@besenerji.net", address: "29 Ekim Mahallesi 778. Cadde No: 7/5, Sincan / Ankara" };
 export type Service = { slug:string; title:string; shortTitle:string; summary:string; image:string; eyebrow:string; intro:string; benefits:string[]; scope:string[]; process:{title:string;text:string}[]; faq:{q:string;a:string}[] };
 const commonProcess = [{title:"Keşif ve planlama",text:"Ekipman, saha koşulları ve işletme ihtiyacını değerlendiririz."},{title:"Güvenli uygulama",text:"Bakım ve test adımlarını iş güvenliği prosedürleriyle uygularız."},{title:"Rapor ve öneri",text:"Bulguları, ölçümleri ve öncelikli aksiyonları raporlarız."}];
 export const services: Service[] = [

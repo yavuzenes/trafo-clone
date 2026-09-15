@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./seo.css";
 import "./solutions.css";
+import "./logo.css";
 
 export const metadata: Metadata = {metadataBase:new URL("https://besenerji.net"),title:{default:"BES Enerji | Trafo Bakım, Test ve Devreye Alma",template:"%s"},description:"Ankara merkezli trafo bakım, onarım, test, yağ analizi, kesici servisi ve devreye alma hizmetleri.",keywords:["trafo bakımı","trafo testi","trafo onarımı","Ankara trafo servisi","trafo yağ analizi","devreye alma"],alternates:{canonical:"/",languages:{tr:"/",en:"/en",ar:"/ar","x-default":"/"}},robots:{index:true,follow:true},category:"engineering"};
 

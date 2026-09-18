@@ -47,3 +47,8 @@ html{background:#fff}body{background:#fff;color:var(--ink);background-image:none
 @media(max-width:900px){.topbar{display:none}.shell{width:min(100% - 40px,760px)}.section-head{align-items:start}.activity-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){html,body{max-width:100%;overflow-x:hidden}.shell{width:calc(100% - 32px);max-width:100%}.activity-grid{grid-template-columns:1fr}.section-head h2,.soft-section h2,.content-grid h2,.faq-grid h2,.about-layout h2,.contact-grid h2{font-size:clamp(30px,10vw,42px);overflow-wrap:anywhere}.hero-copy h1,.page-hero h1,.service-hero h1{max-width:100%;font-size:clamp(38px,11.5vw,50px);overflow-wrap:anywhere}.hero-copy p,.page-hero p,.service-hero p{max-width:100%}.hero-copy .actions,.page-hero .actions{width:100%;display:grid}.hero-copy .btn,.page-hero .btn{width:100%;max-width:100%}.section p,.soft-section p,.section li,.soft-section li{font-size:15px;line-height:1.7}.site-header .mobile-menu div{position:fixed;left:16px;right:16px;top:78px;width:auto}.trust-strip .shell{grid-template-columns:1fr 1fr}.trust-strip span{padding:16px 10px;font-size:10px}.sticky-actions{width:100vw}}
 @media(hover:none){.equipment-overlay{position:relative;inset:auto;transform:none}.equipment-summary{display:none}.equipment-grid>article{min-height:0}}
+
+/* Modern 2:1 logo lockup */
+.brand img{width:150px;height:auto;object-fit:contain}
+.footer-grid img{width:180px;height:auto;object-fit:contain;padding:8px}
+@media(max-width:650px){.brand img{width:125px;height:auto}}

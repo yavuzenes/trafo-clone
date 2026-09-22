@@ -8,8 +8,36 @@ import "./industrial.css";
 import "./responsive-overrides.css";
 import "./intro.css";
 import "./brief-redesign.css";
+import { pageMetadata, siteUrl } from "./seo-metadata";
+import { company } from "./data";
 
-export const metadata: Metadata = {metadataBase:new URL("https://besenerji.net"),title:{default:"BES Enerji | Trafo Bakım, Test ve Devreye Alma",template:"%s"},description:"Ankara merkezli trafo bakım, onarım, test, yağ analizi, kesici servisi ve devreye alma hizmetleri.",keywords:["trafo bakımı","trafo testi","trafo onarımı","Ankara trafo servisi","trafo yağ analizi","devreye alma"],alternates:{canonical:"/",languages:{tr:"/",en:"/en",ar:"/ar","x-default":"/"}},robots:{index:true,follow:true},category:"engineering"};
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", name: "BES Enerji", url: siteUrl, inLanguage: ["tr-TR", "en", "ar"] },
+    {
+      "@type": "Organization",
+      name: "BES Enerji",
+      url: siteUrl,
+      logo: `${siteUrl}/images/bes-enerji-logo.png`,
+      telephone: company.phone,
+      email: company.email,
+      address: { "@type": "PostalAddress", streetAddress: "29 Ekim Mahallesi 778. Cadde No: 7/5", addressLocality: "Sincan", addressRegion: "Ankara", addressCountry: "TR" },
+    },
+  ],
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  ...pageMetadata({
+    title: "Trafo Bakım, Test ve Onarım | YG ve OG Elektrik Hizmetleri | BES Enerji",
+    description: "Trafo bakım, test, onarım, yağ analizi, OG hücre ve kesici bakımı, YG işletme sorumluluğu ve devreye alma için BES Enerji teknik hizmetleri.",
+    path: "/",
+    languages: { tr: "/", en: "/en", ar: "/ar", "x-default": "/" },
+  }),
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  category: "engineering",
+};
 
 export default function RootLayout({
   children,
@@ -21,6 +49,7 @@ export default function RootLayout({
       <body>
         <div className="site-intro" aria-hidden="true"><div className="intro-grid"/><div className="intro-streak"/><Image src="/images/bes-enerji-logo.png" alt="" width={300} height={125} priority/></div>
         {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c") }} />
       </body>
     </html>
   );

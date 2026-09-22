@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const siteUrl = "https://besenerji.net";
 export const siteName = "BES Enerji";
-export const socialImage = "/images/resim-5.jpeg";
+export const socialImage = "/images/bes-hero-concept.png";
 
 type PageMeta = {
   title: string;

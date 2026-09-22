@@ -8,6 +8,7 @@ import "./industrial.css";
 import "./responsive-overrides.css";
 import "./intro.css";
 import "./brief-redesign.css";
+import "./core-services.css";
 import { pageMetadata, siteUrl } from "./seo-metadata";
 import { company } from "./data";
 

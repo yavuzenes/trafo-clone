@@ -87,15 +87,15 @@ const newServices: Service[] = [
 ];
 
 const serviceImages: Record<string, string> = {
-  "trafo-bakim-ve-onarimi": "/images/stock-transformer.jpg",
+  "trafo-bakim-ve-onarimi": "/images/trafo-bakim-5.webp",
   "trafo-ariza-tespiti-ve-giderilmesi": "/images/stock-transformer-2.jpg",
-  "trafo-testleri": "/images/stock-transformer.jpg",
+  "trafo-testleri": "/images/trafo-bakim-4.webp",
   "og-hucre-bakim-ve-onarim": "/images/stock-switchgear-2.jpg",
-  "og-hucre-ariza-tespiti": "/images/stock-switchgear.jpg",
-  "og-hucre-testleri": "/images/stock-switchgear-2.jpg",
+  "og-hucre-ariza-tespiti": "/images/resim-8.jpeg",
+  "og-hucre-testleri": "/images/resim-6.jpeg",
   "proje-ve-danismanlik": "/images/stock-substation.jpg",
-  "elektrik-taahhut": "/images/stock-substation.jpg",
-  "acil-mudahale": "/images/stock-transformer-2.jpg",
+  "elektrik-taahhut": "/images/stock-switchgear.jpg",
+  "acil-mudahale": "/images/resim-7.jpeg",
 };
 export const allServices: Service[] = [...services, ...newServices].map(service => ({ ...service, image: serviceImages[service.slug] ?? service.image }));
 const coreSlugs = ["trafo-bakim-ve-onarimi","trafo-ariza-tespiti-ve-giderilmesi","trafo-testleri","og-hucre-bakim-ve-onarim","og-hucre-ariza-tespiti","og-hucre-testleri","proje-ve-danismanlik","elektrik-taahhut","acil-mudahale"];

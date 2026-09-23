@@ -9,6 +9,7 @@ import "./responsive-overrides.css";
 import "./intro.css";
 import "./brief-redesign.css";
 import "./core-services.css";
+import "./bes-relaunch.css";
 import { pageMetadata, siteUrl } from "./seo-metadata";
 import { company } from "./data";
 
@@ -20,7 +21,7 @@ const siteSchema = {
       "@type": "Organization",
       name: "BES Enerji",
       url: siteUrl,
-      logo: `${siteUrl}/images/bes-enerji-logo-concept-v3.png`,
+      logo: `${siteUrl}/images/bes-enerji-user-logo.png`,
       telephone: company.phone,
       email: company.email,
       address: { "@type": "PostalAddress", streetAddress: "29 Ekim Mahallesi 778. Cadde No: 7/5", addressLocality: "Sincan", addressRegion: "Ankara", addressCountry: "TR" },
@@ -48,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="tr" style={{"--font-manrope": '"Segoe UI", Arial, sans-serif', "--font-mono": '"Cascadia Mono", Consolas, monospace'} as React.CSSProperties}>
       <body>
-        <div className="site-intro" aria-hidden="true"><div className="intro-grid"/><div className="intro-streak"/><Image src="/images/bes-enerji-logo-concept-v3.png" alt="" width={300} height={125} priority/></div>
+        <div className="site-intro" aria-hidden="true"><div className="intro-grid"/><div className="intro-streak"/><Image src="/images/bes-enerji-user-logo.png" alt="" width={300} height={125} priority/></div>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c") }} />
       </body>

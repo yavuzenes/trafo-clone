@@ -60,3 +60,8 @@
 .city-work-note{background:#f2f6f8;border-bottom:1px solid #dbe4e9;padding:24px 0;color:#1b2d3c}.city-work-note .shell{display:flex;align-items:center;gap:30px}.city-work-note strong{font-size:16px;white-space:nowrap;color:#9a5100}.city-work-note p{margin:0;font-size:14px;line-height:1.65}
 @media(max-width:700px){.city-work-note .shell{display:block}.city-work-note p{margin-top:8px}}
 .equipment-video-play{position:relative;width:100%;height:100%;border:0;background:#0d1d2a;cursor:pointer;overflow:hidden}.equipment-video-play img{object-fit:contain;background:#f5f8fa;padding:16px}.equipment-video-play span{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);padding:15px 23px;background:#d35414;color:#fff;font-size:15px;font-weight:900;white-space:nowrap;box-shadow:0 9px 28px #0d1d2a66}.equipment-video-play:hover span,.equipment-video-play:focus-visible span{background:#aa350e}
+.kvkk-content{max-width:920px}
+.kvkk-content h2{color:#11263b;font-size:clamp(1.4rem,2.4vw,2rem);margin:2.2rem 0 .7rem}
+.kvkk-content h2:first-child{margin-top:0}
+.kvkk-content p{color:#293b4d;font-size:1.03rem;line-height:1.75;margin:0 0 1rem}
+.kvkk-content a{color:#a73519;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}

@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://besenerji.net";
   const tr = [
     "", "/hizmetler", "/kurumsal", "/cozumler", "/faaliyet-alanlari",
-    "/cihaz-parkuru", "/yetkili-servisler", "/referanslar", "/iletisim", "/sss",
+    "/cihaz-parkuru", "/yetkili-servisler", "/referanslar", "/iletisim", "/sss", "/kvkk",
     ...equipment.map(item => `/cihaz-parkuru/${item.code.toLowerCase()}`),
     ...allServices.map(service => `/hizmetler/${service.slug}`),
     ...cityPages.map(city => `/trafo-bakimi/${city.slug}`),

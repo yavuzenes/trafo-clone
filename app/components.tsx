@@ -7,6 +7,7 @@ const mainNav = [
   ["Ana Sayfa", "/"],
   ["Hakkımızda", "/kurumsal"],
   ["Hizmetlerimiz", "/hizmetler"],
+  ["Cihaz Parkurumuz", "/cihaz-parkuru"],
   ["Yetkili Servisler ve Partnerler", "/yetkili-servisler"],
   ["Referanslar", "/referanslar"],
 ] as const;
@@ -19,12 +20,12 @@ export function LanguageMenu({ locale = "tr" }: { locale?: "tr" | "en" | "ar" })
 export function Header() {
   return <>
     <div className="bes-utility"><div className="shell bes-utility-inner"><span>Ankara merkezli · Türkiye genelinde teknik saha hizmeti</span><Link className="bes-utility-cta" href="/iletisim">Teknik talep oluşturun <span aria-hidden="true">↗</span></Link></div></div>
-    <header className="bes-header"><div className="shell bes-header-inner"><Link className="bes-brand" href="/" aria-label="BES Enerji ana sayfa"><Image src="/images/bes-enerji-2026-logo.jpg" alt="BES Enerji" width={270} height={107} priority/></Link><nav className="bes-nav" aria-label="Ana menü">{mainNav.map(([label,href])=><Link key={href} href={href}>{label}</Link>)}</nav><Link className="bes-nav-contact" href="/iletisim">İletişim</Link><LanguageMenu/><details className="bes-mobile-menu"><summary>Menü <span aria-hidden="true">☰</span></summary><nav aria-label="Mobil menü">{mainNav.map(([label,href])=><Link key={href} href={href}>{label}</Link>)}<Link href="/cihaz-parkuru">Cihaz Parkurumuz</Link><Link href="/faaliyet-alanlari">Faaliyet Alanları</Link><Link href="/iletisim">İletişim</Link></nav></details></div></header>
+    <header className="bes-header"><div className="shell bes-header-inner"><Link className="bes-brand" href="/" aria-label="BES Enerji ana sayfa"><Image src="/images/bes-enerji-2026-logo.jpg" alt="BES Enerji" width={270} height={107} priority/></Link><nav className="bes-nav" aria-label="Ana menü">{mainNav.map(([label,href])=><Link key={href} href={href}>{label}</Link>)}</nav><Link className="bes-nav-contact" href="/iletisim">İletişim</Link><LanguageMenu/><details className="bes-mobile-menu"><summary>Menü <span aria-hidden="true">☰</span></summary><nav aria-label="Mobil menü">{mainNav.map(([label,href])=><Link key={href} href={href}>{label}</Link>)}<Link href="/faaliyet-alanlari">Faaliyet Alanları</Link><Link href="/iletisim">İletişim</Link></nav></details></div></header>
   </>;
 }
 
 export function ReferenceStrip() {
-  return <section className="reference-strip" aria-labelledby="reference-strip-title"><div className="shell reference-strip-head"><span className="kicker" id="reference-strip-title">Referanslarımız</span><Link className="reference-all-link" href="/referanslar#referans-listesi">Tüm referansları inceleyin →</Link></div><div className="reference-marquee"><div className="reference-marquee-track">{[...references,...references].map((item,index)=><div className="reference-logo" key={`${item}-${index}`}><Image src={`/images/${item}`} alt="Referans kurum logosu" width={180} height={90}/></div>)}</div></div></section>;
+  return <section className="reference-strip" aria-labelledby="reference-strip-title"><div className="shell reference-strip-head"><span className="kicker" id="reference-strip-title">Referanslarımız</span><Link className="reference-all-link" href="/referanslar#referans-listesi">Tüm referansları inceleyin →</Link></div><div className="reference-marquee"><div className="reference-marquee-track">{[...references,...references].map((item,index)=><div className="reference-logo" key={`${item}-${index}`}>{item==="tcdd"?<span className="reference-typemark" aria-label="TCDD">TCDD</span>:<Image src={`/images/${item}`} alt="Referans kurum logosu" width={180} height={90}/>}</div>)}</div></div></section>;
 }
 
 export function Footer() {

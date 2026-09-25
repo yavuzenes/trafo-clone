@@ -21,7 +21,7 @@ const siteSchema = {
       "@type": "Organization",
       name: "BES Enerji",
       url: siteUrl,
-      logo: `${siteUrl}/images/bes-enerji-user-logo.png`,
+      logo: `${siteUrl}/images/bes-enerji-2026-logo.jpg`,
       telephone: company.phone,
       email: company.email,
       address: { "@type": "PostalAddress", streetAddress: "29 Ekim Mahallesi 778. Cadde No: 7/5", addressLocality: "Sincan", addressRegion: "Ankara", addressCountry: "TR" },
@@ -49,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="tr" style={{"--font-manrope": '"Segoe UI", Arial, sans-serif', "--font-mono": '"Cascadia Mono", Consolas, monospace'} as React.CSSProperties}>
       <body>
-        <div className="site-intro" aria-hidden="true"><div className="intro-grid"/><div className="intro-streak"/><Image src="/images/bes-enerji-user-logo.png" alt="" width={300} height={125} priority/></div>
+        <div className="site-intro" aria-hidden="true"><div className="intro-grid"/><div className="intro-streak"/><Image src="/images/bes-enerji-2026-logo.jpg" alt="" width={300} height={125} priority/></div>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c") }} />
       </body>

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { allServices } from "./core-services";
 import { articleBySlug, articles } from "./blog-all";
+import { blogImages } from "./blog-images";
+import { relatedBlogForService } from "./blog-related";
 import { BlogArticle, BlogIndex } from "./blog-view";
 import { company, references } from "./data";
 import { equipmentDetails, type EquipmentSlug } from "./equipment-details";
@@ -14,7 +16,7 @@ import { copy, locales, type Locale } from "./localized";
 import { cityNames, ui } from "./localized-ui";
 import { articlePath, cityPath, equipmentPath, sectionPath, sectionSegments, servicePath, type SectionKey } from "./locale-routes";
 import { cityPages, equipment } from "./seo-data";
-import { pageMetadata } from "./seo-metadata";
+import { breadcrumbSchema, pageMetadata, siteUrl } from "./seo-metadata";
 import { LanguageMenu } from "./language-menu";
 import { EquipmentVideo } from "./cihaz-parkuru/equipment-video";
 
@@ -74,7 +76,7 @@ export async function localizedMetadata({ params }: Props): Promise<Metadata> {
   const title = article?.title ?? service?.title ?? (deviceIndex >= 0 ? `${t.equipment.items[deviceIndex][0]} ${equipment[deviceIndex].code}` : city ? `${city} ${t.city.title}` : info.kind === "home" ? t.home.title : t.nav[info.kind as SectionKey]);
   const description = article?.description ?? service?.summary ?? (deviceIndex >= 0 ? t.equipment.lead : city ? `${city}: ${t.city.planText}` : info.kind === "home" ? t.home.lead : t[info.kind as "about" | "activities" | "solutions" | "partners" | "references" | "contact" | "faq" | "privacy"]?.lead ?? t.home.expertiseLead);
   const p = paths(info);
-  return pageMetadata({ title: `${title} | BES Energy`, description, path: p[locale], image: deviceIndex >= 0 ? equipment[deviceIndex].image : undefined, locale: locale === "en" ? "en_US" : "ar_AR", languages: { tr: p.tr, en: p.en, ar: p.ar, "x-default": p.tr } });
+  return pageMetadata({ title: `${title} | BES Energy`, description, path: p[locale], image: article ? blogImages[article.id].src : deviceIndex >= 0 ? equipment[deviceIndex].image : undefined, locale: locale === "en" ? "en_US" : "ar_AR", languages: { tr: p.tr, en: p.en, ar: p.ar, "x-default": p.tr } });
 }
 
 function Header({ locale }: { locale: Locale }) {
@@ -101,7 +103,7 @@ function Crumb({ locale, current, parent }: { locale: Locale; current: string; p
 
 function Home({ locale }: { locale: Locale }) {
   const t = ui[locale];
-  return <><section className="bes-hero"><Image src="/images/bes-hero-refined.png" alt="" fill priority sizes="100vw"/><div className="bes-hero-shade"/><div className="shell bes-hero-content"><span className="bes-eyebrow light">{t.home.eyebrow}</span><h1>{t.home.title}</h1><div className="bes-hero-rule"/><p>{t.home.lead}</p><div className="bes-hero-actions"><Link className="bes-button bes-button-primary" href={sectionPath(locale,"services")}>{t.nav.services} →</Link><Link className="bes-button bes-button-hero-outline" href={sectionPath(locale,"contact")}>{t.request}</Link></div></div></section>
+  return <><section className="bes-hero"><Image src="/images/bes-hero-refined.webp" alt="" fill priority sizes="100vw"/><div className="bes-hero-shade"/><div className="shell bes-hero-content"><span className="bes-eyebrow light">{t.home.eyebrow}</span><h1>{t.home.title}</h1><div className="bes-hero-rule"/><p>{t.home.lead}</p><div className="bes-hero-actions"><Link className="bes-button bes-button-primary" href={sectionPath(locale,"services")}>{t.nav.services} →</Link><Link className="bes-button bes-button-hero-outline" href={sectionPath(locale,"contact")}>{t.request}</Link></div></div></section>
     <section className="bes-section"><div className="shell"><div className="bes-section-heading"><span className="bes-eyebrow">{t.home.expertise}</span><h2>{t.home.expertiseTitle}</h2><p>{t.home.expertiseLead}</p></div><ServiceCards locale={locale} limit={9}/><div className="bes-section-link"><Link href={sectionPath(locale,"services")}>{t.all} →</Link></div></div></section>
     <section className="dark-section"><div className="shell split"><div><span className="kicker light">{t.home.why}</span><h2>{t.home.whyTitle}</h2><p>{t.home.whyText}</p><Link className="bes-button bes-button-light" href={sectionPath(locale,"about")}>{t.nav.about} →</Link></div><div className="metric-grid">{[t.about.metric1,t.about.metric2,t.about.metric3].map((value,index) => <div key={value}><strong>0{index+1}</strong><span>{value}</span></div>)}</div></div></section>
     <section className="bes-section"><div className="shell"><div className="bes-section-heading"><span className="bes-eyebrow">{t.nav.equipment}</span><h2>{t.home.devices}</h2><p>{t.home.devicesLead}</p></div><EquipmentCards locale={locale} limit={3}/><div className="bes-section-link"><Link href={sectionPath(locale,"equipment")}>{t.all} →</Link></div></div></section>
@@ -136,7 +138,7 @@ function Content({ locale, info }: { locale: Locale; info: PageInfo }) {
     return <><section className="service-hero"><div className="shell"><Crumb locale={locale} current={item.title} parent="services"/><div className="service-hero-grid"><div><span className="kicker light">{t.nav.services}</span><h1>{item.title}</h1><p>{item.intro}</p><div className="actions"><Link className="btn primary" href={sectionPath(locale,"contact")}>{t.request}</Link><a className="btn ghost" href={`tel:${company.phone}`}>{t.call}</a></div></div><div className="service-hero-image"><Image src={tr.image} alt={`${item.title} — BES Energy`} fill priority sizes="(max-width:760px) 100vw, 45vw"/></div></div></div></section>
       <section className="section"><div className="shell content-grid"><div><span className="kicker">{t.scope}</span><h2>{item.title}</h2><p className="lead">{item.summary}</p><p>{item.intro}</p></div><ul className="check-list">{item.items.map(value => <li key={value}>{value}</li>)}</ul></div></section>
       <section className="soft-section"><div className="shell"><span className="kicker">{t.process}</span><div className="process-grid">{copy[locale].steps.slice(0,3).map((step,index) => <article key={step}><span>0{index+1}</span><h3>{step}</h3></article>)}</div></div></section>
-      <section className="section"><div className="shell"><h2>{t.related}</h2><div className="localized-related">{related.map(entry => <Link key={entry.slug} href={servicePath(locale,entry.tr)}>{entry.title} →</Link>)}</div></div></section></>;
+      <section className="section"><div className="shell"><h2>{t.related}</h2><div className="localized-related">{related.map(entry => <Link key={entry.slug} href={servicePath(locale,entry.tr)}>{entry.title} →</Link>)}</div><h2>{t.nav.blog}</h2><div className="blog-related-grid">{relatedBlogForService(locale,item.tr).map(article => <Link key={article.id} href={articlePath(locale,article.id)}>{article.title} →</Link>)}</div></div></section></>;
   }
   if (info.kind === "about") return <><Hero locale={locale} title={t.about.title} lead={t.about.lead} crumb={t.nav.about}/><section className="section"><div className="shell about-layout"><div className="about-image"><Image src="/images/trafo-bakim-5.webp" alt={t.about.title} fill sizes="(max-width:760px) 100vw, 48vw"/></div><div><span className="kicker">BES ENERGY</span><h2>{t.about.title}</h2><p className="lead">{t.about.lead}</p><p>{t.about.p1}</p><p>{t.about.p2}</p><Link className="bes-button bes-button-primary" href={sectionPath(locale,"contact")}>{t.request} →</Link></div></div></section><section className="dark-section"><div className="shell value-grid">{[t.about.metric1,t.about.metric2,t.about.metric3].map(value => <article key={value}><h2>{value}</h2></article>)}</div></section></>;
   if (info.kind === "activities") return <><Hero locale={locale} title={t.activities.title} lead={t.activities.lead} crumb={t.nav.activities}/><section className="section"><div className="shell activity-grid compact">{t.activities.items.map(([title,text],index) => <article key={title}><span>0{index+1}</span><h2>{title}</h2><p>{text}</p></article>)}</div></section></>;
@@ -179,5 +181,10 @@ export async function LocalizedPage({ params }: Props) {
   if (!isLocale(locale)) notFound();
   const info = identify(locale, segments);
   if (!info) notFound();
-  return <div lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className={locale === "ar" ? "rtl localized-page" : "localized-page"}><Header locale={locale}/><main><Content locale={locale} info={info}/></main><Footer locale={locale}/></div>;
+  const service = info.kind === "service" ? allLocalizedServices[locale].find(item => item.slug === info.slug) : undefined;
+  const serviceSchema = service && { "@context": "https://schema.org", "@graph": [
+    { "@type": "Service", name: service.title, description: service.summary, url: `${siteUrl}${servicePath(locale,service.tr)}`, provider: { "@type": "Organization", name: "BES Enerji", url: siteUrl, telephone: company.phone }, areaServed: { "@type": "Country", name: "Türkiye" } },
+    breadcrumbSchema([{ name: ui[locale].homeLabel, path: sectionPath(locale,"home") }, { name: ui[locale].nav.services, path: sectionPath(locale,"services") }, { name: service.title, path: servicePath(locale,service.tr) }]),
+  ] };
+  return <div lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className={locale === "ar" ? "rtl localized-page" : "localized-page"}><Header locale={locale}/><main><Content locale={locale} info={info}/></main><Footer locale={locale}/>{serviceSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema).replace(/</g,"\\u003c") }}/>}</div>;
 }

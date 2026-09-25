@@ -24,8 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...equipment.map(item => equipmentPath(locale,item.code)),
     ...cityPages.map(city => cityPath(locale,city.slug)),
   ]);
+  const updatedBlogPaths = new Set(locales.flatMap(locale => articles[locale].map(article => articlePath(locale,article.id))));
   return [...tr, ...localized].map(url => ({
     url: `${base}${url}`,
+    ...(updatedBlogPaths.has(url) ? { lastModified: new Date("2026-09-25T00:00:00+03:00") } : {}),
     changeFrequency: url === "" ? "weekly" : "monthly",
     priority: url === "" ? 1 : url.startsWith("/trafo-bakimi/") ? .85 : .8,
   }));

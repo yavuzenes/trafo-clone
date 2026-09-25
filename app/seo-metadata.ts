@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const siteUrl = "https://www.besenerji.net";
 export const siteName = "BES Enerji";
-export const socialImage = "/images/bes-hero-refined.png";
+export const socialImage = "/images/bes-hero-refined.webp";
 
 const translatedTopPages: Record<string, { en: string; ar: string }> = {
   "/": { en: "/en", ar: "/ar" },

@@ -88,13 +88,13 @@ const newServices: Service[] = [
 
 const serviceImages: Record<string, string> = {
   "trafo-bakim-ve-onarimi": "/images/trafo-bakim-5.webp",
-  "trafo-ariza-tespiti-ve-giderilmesi": "/images/stock-transformer-2.jpg",
+  "trafo-ariza-tespiti-ve-giderilmesi": "/images/resim-2.jpeg",
   "trafo-testleri": "/images/trafo-bakim-4.webp",
-  "og-hucre-bakim-ve-onarim": "/images/stock-switchgear-2.jpg",
+  "og-hucre-bakim-ve-onarim": "/images/resim-7.jpeg",
   "og-hucre-ariza-tespiti": "/images/resim-8.jpeg",
   "og-hucre-testleri": "/images/resim-6.jpeg",
-  "proje-ve-danismanlik": "/images/stock-substation.jpg",
-  "elektrik-taahhut": "/images/stock-switchgear.jpg",
+  "proje-ve-danismanlik": "/images/resim-9.jpeg",
+  "elektrik-taahhut": "/images/resim-10.jpeg",
   "acil-mudahale": "/images/resim-7.jpeg",
 };
 export const allServices: Service[] = [...services, ...newServices].map(service => ({ ...service, image: serviceImages[service.slug] ?? service.image }));

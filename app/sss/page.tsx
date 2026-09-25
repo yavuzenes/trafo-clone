@@ -10,7 +10,7 @@ const questions = [
   { q: "OG hücre ve trafo testleri için enerji kesintisi gerekir mi?", a: "Testin türüne göre değişir. İzolasyon, çevirme oranı ve sargı direnci gibi birçok test enerjisiz ekipmanda yapılır. Kesinti ve güvenlik planı saha kapsamı kesinleşince oluşturulur." },
   { q: "Bakım ve test sonunda rapor hazırlanır mı?", a: "İş kapsamına göre uygulanan kontroller, ölçüm değerleri, bulgular ve önerilen aksiyonlar teknik raporda kaydedilir." },
   { q: "Teklif bedelini neler etkiler?", a: "Ekipman sayısı ve tipi, gerilim seviyesi, yapılacak testler, tesis konumu, erişim koşulları, duruş penceresi ve arızanın kapsamı teklifin belirlenmesinde etkilidir." },
-  { q: "Cihaz kalibrasyon belgeleri paylaşılabilir mi?", a: "Kullanılacak ölçüm cihazları ve güncel kalibrasyon durumları hizmet öncesinde teyit edilir. Talep edilen belge kapsamını teklif aşamasında belirtmeniz önerilir." },
+  { q: "Cihaz kalibrasyon belgeleri paylaşılabilir mi?", a: "BES Enerji cihaz parkurundaki ölçüm cihazlarına ilişkin kalibrasyon belge ve tarih bilgileri, talebiniz kapsamında teknik ekibimiz tarafından paylaşılır." },
   { q: "BES Enerji hangi illerde hizmet planlayabilir?", a: "Firma Ankara merkezlidir. Diğer illerde saha çalışması, talebin türüne, ekip uygunluğuna ve operasyon planına göre değerlendirilir; varış süresi önceden taahhüt edilmez." },
 ] as const;
 

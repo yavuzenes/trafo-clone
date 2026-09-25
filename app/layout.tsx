@@ -18,10 +18,11 @@ const siteSchema = {
   "@graph": [
     { "@type": "WebSite", name: "BES Enerji", url: siteUrl, inLanguage: ["tr-TR", "en", "ar"] },
     {
-      "@type": "Organization",
+      "@type": "Electrician",
       name: "BES Enerji",
+      legalName: "BES Taahhüt Enerji Sanayi ve Ticaret Ltd. Şti.",
       url: siteUrl,
-      description: "Ankara merkezli, 7 kişiyi aşan uzman ekibi ve deneyimli mühendis kadrosuyla trafo ve OG hücre arıza, bakım, test ve onarım hizmetleri.",
+      description: "Ankara merkezli deneyimli mühendis ve teknik saha ekibiyle trafo ve OG hücre arıza, bakım, test ve onarım hizmetleri.",
       logo: `${siteUrl}/images/bes-enerji-2026-logo.jpg`,
       telephone: company.phone,
       email: company.email,
@@ -39,7 +40,6 @@ export const metadata: Metadata = {
     languages: { tr: "/", en: "/en", ar: "/ar", "x-default": "/" },
   }),
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
-  keywords: ["trafo bakım", "trafo arıza tespiti", "trafo onarım", "trafo test", "OG hücre bakım", "yüksek gerilim teknik servis"],
   category: "engineering",
 };
 

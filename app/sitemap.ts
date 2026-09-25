@@ -22,7 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]);
   return [...tr, ...localized].map(url => ({
     url: `${base}${url}`,
-    lastModified: new Date(),
     changeFrequency: url === "" ? "weekly" : "monthly",
     priority: url === "" ? 1 : url.startsWith("/trafo-bakimi/") ? .85 : .8,
   }));

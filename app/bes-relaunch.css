@@ -65,3 +65,9 @@
 .kvkk-content h2:first-child{margin-top:0}
 .kvkk-content p{color:#293b4d;font-size:1.03rem;line-height:1.75;margin:0 0 1rem}
 .kvkk-content a{color:#a73519;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.city-links .city-link-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.city-links .city-link-grid a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;min-height:60px;padding:14px 18px;border:1px solid #d8e2e9;background:#f7f9fb;color:#183147;font-size:15px;font-weight:750;line-height:1.4;overflow-wrap:anywhere;transition:border-color .2s,background .2s,transform .2s}
+.city-links .city-link-grid a::after{content:"↗";flex:none;color:#ba5b08;font-size:19px}
+.city-links .city-link-grid a:hover,.city-links .city-link-grid a:focus-visible{border-color:#ba5b08;background:#fff9f2;transform:translateY(-2px);outline:2px solid #ba5b08;outline-offset:2px}
+@media(max-width:900px){.city-links .city-link-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.city-links .city-link-grid{grid-template-columns:minmax(0,1fr);gap:10px}.city-links .city-link-grid a{min-height:56px}}

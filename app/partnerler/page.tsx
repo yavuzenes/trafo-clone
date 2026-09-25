@@ -1,4 +1,5 @@
-import type{Metadata}from"next";import Image from"next/image";import{Header,Footer,Breadcrumb}from"../components";import{pageMetadata}from"../seo-metadata";
-const partners=[{name:"Alfanar SFA Elektrik",image:"alfanar-sfaelektrik.jpeg"},{name:"EKOS Elektrik",image:"ekoselektrik.jpeg"},{name:"Astor Enerji",image:"astor.jpeg"}];
-export const metadata:Metadata=pageMetadata({title:"Partnerlerimiz | BES Enerji",description:"BES Enerji'nin saha hizmetleri ve güç sistemleri çalışmalarındaki çözüm partnerlerini inceleyin.",path:"/partnerler"});
-export default function Page(){return <><Header/><main className="partners-page"><div className="shell"><Breadcrumb items={[{label:"Çözüm Partnerlerimiz"}]}/><div className="partners-intro"><span className="kicker">BİRLİKTE DEĞER ÜRETİYORUZ</span><h1>Çözüm partnerlerimiz</h1><p>Enerji altyapısı çalışmalarında birlikte çalıştığımız markalar. İş ortaklığı, üretici adına yetkili servis statüsü anlamına gelmez.</p></div><div className="partner-grid">{partners.map(item=><article key={item.name}><div className="partner-logo"><Image src={`/images/${item.image}`} alt={`${item.name} logosu`} width={260} height={130}/></div><h2>{item.name}</h2></article>)}</div></div></main><Footer/></>}
+import { permanentRedirect } from "next/navigation";
+
+export default function Page() {
+  permanentRedirect("/yetkili-servisler");
+}

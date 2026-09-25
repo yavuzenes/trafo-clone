@@ -87,13 +87,14 @@ const newServices: Service[] = [
 ];
 
 const serviceImages: Record<string, string> = {
+  "trafo-yag-analizi": "/images/trafo-yag-testi.webp",
   "trafo-bakim-ve-onarimi": "/images/trafo-bakim-5.webp",
   "trafo-ariza-tespiti-ve-giderilmesi": "/images/resim-2.jpeg",
   "trafo-testleri": "/images/trafo-bakim-4.webp",
   "og-hucre-bakim-ve-onarim": "/images/resim-7.jpeg",
   "og-hucre-ariza-tespiti": "/images/resim-8.jpeg",
   "og-hucre-testleri": "/images/resim-6.jpeg",
-  "proje-ve-danismanlik": "/images/resim-9.jpeg",
+  "proje-ve-danismanlik": "/images/proje-danismanlik-yeni.webp",
   "elektrik-taahhut": "/images/resim-10.jpeg",
   "acil-mudahale": "/images/resim-7.jpeg",
 };

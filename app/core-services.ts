@@ -95,8 +95,8 @@ const serviceImages: Record<string, string> = {
   "og-hucre-ariza-tespiti": "/images/resim-8.jpeg",
   "og-hucre-testleri": "/images/resim-6.jpeg",
   "proje-ve-danismanlik": "/images/proje-danismanlik-yeni.webp",
-  "elektrik-taahhut": "/images/resim-10.jpeg",
-  "acil-mudahale": "/images/resim-7.jpeg",
+  "elektrik-taahhut": "/images/elektrik-taahhut-montaj.webp",
+  "acil-mudahale": "/images/acil-elektrik-ariza-teshisi.webp",
 };
 export const allServices: Service[] = [...services, ...newServices].map(service => ({ ...service, image: serviceImages[service.slug] ?? service.image }));
 const coreSlugs = ["trafo-bakim-ve-onarimi","trafo-ariza-tespiti-ve-giderilmesi","trafo-testleri","og-hucre-bakim-ve-onarim","og-hucre-ariza-tespiti","og-hucre-testleri","proje-ve-danismanlik","elektrik-taahhut","acil-mudahale"];

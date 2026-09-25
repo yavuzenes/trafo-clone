@@ -21,6 +21,7 @@ const siteSchema = {
       "@type": "Organization",
       name: "BES Enerji",
       url: siteUrl,
+      description: "Ankara merkezli, 7 kişiyi aşan uzman ekibi ve deneyimli mühendis kadrosuyla trafo ve OG hücre arıza, bakım, test ve onarım hizmetleri.",
       logo: `${siteUrl}/images/bes-enerji-2026-logo.jpg`,
       telephone: company.phone,
       email: company.email,
@@ -32,12 +33,13 @@ const siteSchema = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   ...pageMetadata({
-    title: "Trafo Bakım, Test ve Onarım | YG ve OG Elektrik Hizmetleri | BES Enerji",
-    description: "Trafo bakım, test, onarım, yağ analizi, OG hücre ve kesici bakımı, YG işletme sorumluluğu ve devreye alma için BES Enerji teknik hizmetleri.",
+    title: "Trafo Bakım, Arıza, Test ve Onarım | BES Enerji",
+    description: "BES Enerji; trafo arıza tespiti, bakım, test ve onarım, OG hücre ve kesici bakımı ile YG teknik saha hizmetleri için ölçüme dayalı çözümler sunar.",
     path: "/",
     languages: { tr: "/", en: "/en", ar: "/ar", "x-default": "/" },
   }),
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  keywords: ["trafo bakım", "trafo arıza tespiti", "trafo onarım", "trafo test", "OG hücre bakım", "yüksek gerilim teknik servis"],
   category: "engineering",
 };
 

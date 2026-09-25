@@ -6,6 +6,7 @@ import { Header, Footer, Breadcrumb } from "../../components";
 import { company } from "../../data";
 import { allServices } from "../../core-services";
 import { coreContent } from "../../core-service-content";
+import { cityPages } from "../../seo-data";
 import { breadcrumbSchema, pageMetadata, siteUrl } from "../../seo-metadata";
 
 export function generateStaticParams() { return allServices.map(s => ({ slug: s.slug })); }
@@ -37,5 +38,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     <section className="section"><div className="shell content-grid"><div><span className="kicker">Hizmet kapsamı</span><h2>Sahada uyguladığımız kontroller</h2><p className="lead">Kapsam, keşif sonrasında ekipman ve tesis koşullarına göre kesinleştirilir.</p></div><ul className="check-list">{s.scope.map(x=><li key={x}>{x}</li>)}</ul></div></section>
     <section className="soft-section"><div className="shell"><span className="kicker">Nasıl çalışıyoruz?</span><h2>Planlı, güvenli ve izlenebilir süreç.</h2><div className="process-grid">{s.process.map((p,i)=><article key={p.title}><span>0{i+1}</span><h3>{p.title}</h3><p>{p.text}</p></article>)}</div></div></section>
     <section className="section"><div className="shell faq-grid"><div><span className="kicker">Sık sorulan sorular</span><h2>{s.shortTitle} hakkında merak edilenler.</h2></div><div>{s.faq.map(x=><details key={x.q}><summary>{x.q}</summary><p>{x.a}</p></details>)}</div></div></section>
+    {slug === "trafo-bakim-ve-onarimi" && <section className="section city-links"><div className="shell"><span className="kicker">İL BAZINDA TEKNİK BİLGİ</span><h2>Trafo bakım ve arıza talepleri</h2><p>Ankara merkezli ekibimiz için saha planı, talebin ve ekip uygunluğunun değerlendirilmesiyle netleşir.</p><div><div>{cityPages.map(city=><Link key={city.slug} href={`/trafo-bakimi/${city.slug}`}>{city.name} trafo bakımı</Link>)}</div></div></div></section>}
   </main><Footer/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema).replace(/</g,"\\u003c")}}/></>;
 }

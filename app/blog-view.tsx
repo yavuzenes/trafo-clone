@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { articles } from "./blog-all";
+import { blogImages } from "./blog-images";
 import type { Article } from "./blog-data";
-import { allServices } from "./core-services";
 import { articlePath, equipmentPath, sectionPath, servicePath, type SiteLocale } from "./locale-routes";
 import { ui } from "./localized-ui";
 import { company } from "./data";
@@ -14,9 +14,7 @@ const labels = {
   ar: { title: "الأدلة الفنية", lead: "شروح ميدانية واضحة عن المحولات وخلايا الجهد المتوسط والاختبارات والأعطال.", read: "اقرأ الدليل", contents: "في هذا المقال", questions: "الأسئلة الشائعة", sources: "المراجع الفنية", related: "أدلة فنية أخرى", service: "الخدمة ذات الصلة", device: "جهاز الاختبار ذو الصلة", cta: "اطلب الدعم الفني", caution: "هذا الدليل للمعلومات العامة. لا ينفذ التدخل أو الاختبار في معدات الجهد العالي والمتوسط إلا موظفون مؤهلون وفق دليل المعدة وإجراءات سلامة المنشأة." },
 } as const;
 
-function photo(article: Article) {
-  return allServices.find(service => service.slug === article.service)?.image ?? "/images/trafo-bakim-4.webp";
-}
+function photo(article: Article) { return blogImages[article.id].src; }
 
 export function BlogIndex({ locale }: { locale: SiteLocale }) {
   const t = labels[locale];
@@ -33,7 +31,7 @@ export function BlogArticle({ locale, article }: { locale: SiteLocale; article: 
   ] };
   const related = articles[locale].filter(item => item.id !== article.id).slice(0,3);
   return <><section className="page-hero blog-article-hero"><div className="shell"><nav className="breadcrumb"><Link href={sectionPath(locale,"home")}>{nav.home}</Link><span>/ <Link href={sectionPath(locale,"blog")}>{t.title}</Link></span></nav><span className="kicker light">BES ENERGY · {t.title}</span><h1>{article.title}</h1><p>{article.intro}</p></div></section>
-    <div className="shell blog-article-layout"><article className="blog-body"><div className="blog-leading-image"><Image src={photo(article)} alt={`${article.title} — BES Energy`} fill priority sizes="(max-width:900px) 100vw, 68vw"/></div><p className="blog-lead">{article.intro}</p><p className="blog-safety">{t.caution}</p>{article.sections.map((section,index) => <section key={section.heading} id={`section-${index+1}`}><h2>{section.heading}</h2><p>{section.body}</p>{section.bullets && <ul>{section.bullets.map(value => <li key={value}>{value}</li>)}</ul>}</section>)}<section className="blog-faq"><h2>{t.questions}</h2>{article.faq.map(entry => <details key={entry.q}><summary>{entry.q}</summary><p>{entry.a}</p></details>)}</section><section className="blog-sources"><h2>{t.sources}</h2><ul>{article.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label} ↗</a></li>)}</ul></section></article>
+    <div className="shell blog-article-layout"><article className="blog-body"><figure className="blog-figure"><div className="blog-leading-image"><Image src={photo(article)} alt={article.title} fill priority sizes="(max-width:900px) 100vw, 68vw"/></div>{blogImages[article.id].source && <figcaption>{locale === "tr" ? "Görsel" : locale === "en" ? "Image" : "الصورة"}: <a href={blogImages[article.id].source} target="_blank" rel="noopener noreferrer">{blogImages[article.id].credit}</a>{blogImages[article.id].license && <> · <a href={blogImages[article.id].license} target="_blank" rel="noopener noreferrer">{locale === "tr" ? "Lisans" : locale === "en" ? "License" : "الترخيص"}</a></>}</figcaption>}</figure><p className="blog-lead">{article.intro}</p><p className="blog-safety">{t.caution}</p>{article.sections.map((section,index) => <section key={section.heading} id={`section-${index+1}`}><h2>{section.heading}</h2><p>{section.body}</p>{section.bullets && <ul>{section.bullets.map(value => <li key={value}>{value}</li>)}</ul>}</section>)}<section className="blog-faq"><h2>{t.questions}</h2>{article.faq.map(entry => <details key={entry.q}><summary>{entry.q}</summary><p>{entry.a}</p></details>)}</section><section className="blog-sources"><h2>{t.sources}</h2><ul>{article.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label} ↗</a></li>)}</ul></section></article>
       <aside className="blog-sidebar"><div><h2>{t.contents}</h2>{article.sections.map((section,index) => <a href={`#section-${index+1}`} key={section.heading}>{section.heading}</a>)}</div><div><h2>{t.service}</h2><Link href={servicePath(locale,article.service)}>{nav.services} →</Link>{article.equipment && <><h2>{t.device}</h2><Link href={equipmentPath(locale,article.equipment)}>{nav.equipment} →</Link></>}<a className="bes-button bes-button-primary" href={`tel:${company.phone}`}>{t.cta}</a></div></aside></div>
     <section className="section blog-related"><div className="shell"><h2>{t.related}</h2><div className="blog-related-grid">{related.map(item => <Link key={item.id} href={articlePath(locale,item.id)}>{item.title} →</Link>)}</div></div></section><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g,"\\u003c") }}/></>;
 }

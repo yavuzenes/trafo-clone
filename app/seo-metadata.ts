@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const siteUrl = "https://besenerji.net";
+export const siteUrl = "https://www.besenerji.net";
 export const siteName = "BES Enerji";
 export const socialImage = "/images/bes-hero-refined.png";
 

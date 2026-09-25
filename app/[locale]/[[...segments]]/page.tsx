@@ -8,7 +8,7 @@ import { ReferenceStrip, LanguageMenu } from "../../components";
 import { pageMetadata } from "../../seo-metadata";
 
 type LocalService={slug:string;tr:string;title:string;summary:string;intro:string;items:readonly string[]};
-const base="https://besenerji.net";
+const base="https://www.besenerji.net";
 const valid=(value:string):value is Locale=>locales.includes(value as Locale);
 const getServices=(locale:Locale):readonly LocalService[]=>locale==="en"?translatedServices.en:translatedServices.ar;
 const sectionNames=(locale:Locale)=>locale==="en"?{services:"services",about:"about",projects:"projects",contact:"contact"}:{services:"الخدمات",about:"عن-الشركة",projects:"المشاريع",contact:"اتصل-بنا"};

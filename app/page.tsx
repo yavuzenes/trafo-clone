@@ -5,6 +5,7 @@ import { CoreServiceGrid } from "./core-service-grid";
 import { company } from "./data";
 import { activityAreas, equipment } from "./seo-data";
 import { ActivityIcon } from "./activity-icon";
+import { siteUrl } from "./seo-metadata";
 
 const quickServices = [
   { icon: "⚡", title: "Arıza tespiti ve onarım", text: "Trafo, OG hücre ve yüksek gerilim arızalarında ölçüme dayalı teşhis ve kontrollü müdahale.", href: "/hizmetler/trafo-ariza-tespiti-ve-giderilmesi" },
@@ -20,7 +21,7 @@ const fieldPhotos = [
 ];
 
 export default function Home() {
-  const schema = { "@context": "https://schema.org", "@type": "Electrician", name: "BES Enerji", url: "https://besenerji.net", description: "Trafo ve OG hücre arıza tespiti, bakım, test ve onarım hizmetleri sunan Ankara merkezli mühendislik ekibi.", telephone: company.phone, email: company.email, address: { "@type": "PostalAddress", streetAddress: "29 Ekim Mahallesi 778. Cadde No: 7/5", addressLocality: "Sincan", addressRegion: "Ankara", addressCountry: "TR" }, areaServed: "Türkiye" };
+  const schema = { "@context": "https://schema.org", "@type": "Electrician", name: "BES Enerji", url: siteUrl, description: "Trafo ve OG hücre arıza tespiti, bakım, test ve onarım hizmetleri sunan Ankara merkezli mühendislik ekibi.", telephone: company.phone, email: company.email, address: { "@type": "PostalAddress", streetAddress: "29 Ekim Mahallesi 778. Cadde No: 7/5", addressLocality: "Sincan", addressRegion: "Ankara", addressCountry: "TR" }, areaServed: "Türkiye" };
   return <><Header/><main className="bes-home">
     <section className="bes-hero" aria-labelledby="bes-hero-title"><Image src="/images/bes-hero-refined.png" alt="Trafo üzerinde test ve bakım çalışması" fill priority sizes="100vw"/><div className="bes-hero-shade"/><div className="shell bes-hero-content"><span className="bes-eyebrow light">BES ENERJİ · YÜKSEK GERİLİM TEKNİK SERVİS</span><h1 id="bes-hero-title">Trafo ve OG hücre<br/>arıza, bakım ve test<br/>hizmetleri.</h1><div className="bes-hero-rule"/><p>Yüksek gerilim arızalarında doğru teşhis; trafo ve hücre sistemlerinde planlı bakım, güvenli onarım ve elektriksel test çözümleri.</p><div className="bes-hero-actions"><Link className="bes-button bes-button-primary" href="/hizmetler">Hizmetlerimizi inceleyin →</Link><Link className="bes-button bes-button-hero-outline" href="/iletisim">Teknik talep oluşturun</Link></div></div></section>
     <section className="bes-quick-wrap" aria-label="Öne çıkan hizmetler"><div className="shell bes-quick-grid">{quickServices.map(item=><Link className="bes-quick-card" href={item.href} key={item.title}><span className="bes-quick-icon" aria-hidden="true">{item.icon}</span><h2>{item.title}</h2><p>{item.text}</p><span className="bes-arrow">Hizmeti inceleyin →</span></Link>)}</div></section>

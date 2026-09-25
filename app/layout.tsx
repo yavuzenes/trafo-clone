@@ -12,6 +12,7 @@ import "./core-services.css";
 import "./bes-relaunch.css";
 import { pageMetadata, siteUrl } from "./seo-metadata";
 import { company } from "./data";
+import { AnalyticsConsent } from "./analytics-consent";
 
 const siteSchema = {
   "@context": "https://schema.org",
@@ -41,6 +42,12 @@ export const metadata: Metadata = {
   }),
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   category: "engineering",
+  ...(process.env.GOOGLE_SITE_VERIFICATION || process.env.BING_SITE_VERIFICATION ? {
+    verification: {
+      ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
+      ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {}),
+    },
+  } : {}),
 };
 
 export default function RootLayout({
@@ -53,6 +60,10 @@ export default function RootLayout({
       <body>
         <div className="site-intro" aria-hidden="true"><div className="intro-grid"/><div className="intro-streak"/><Image src="/images/bes-enerji-2026-logo.jpg" alt="" width={300} height={125} priority/></div>
         {children}
+        <AnalyticsConsent
+          gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-KY5XFJ89SG"}
+          clarityId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID ?? ""}
+        />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c") }} />
       </body>
     </html>

@@ -25,7 +25,7 @@ export default function Page() {
       <p>6698 sayılı Kanun’un 11. maddesi kapsamında kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi isteme, amacına uygun kullanılıp kullanılmadığını öğrenme, düzeltme veya silinmesini isteme ve kanunda yer alan diğer haklarınız için veri sorumlusuna başvurabilirsiniz.</p>
       <p>Başvuru için <a href={`mailto:${company.email}`}>{company.email}</a> adresini kullanabilir veya {company.address} adresine yazılı olarak iletebilirsiniz.</p>
       <h2>Çerezler</h2>
-      <p>Sitede reklam veya analitik amaçlı çerezler için bir onay mekanizması bulunmaz; bu tür izleyiciler eklenirse ayrı bir çerez tercih ve aydınlatma düzeni gerekir. Dış bağlantılara geçildiğinde ya da cihaz videosu başlatıldığında ilgili üçüncü tarafın çerez politikası geçerli olabilir.</p>
+      <p>Etkinleştirildiğinde Google Analytics ziyaretleri ölçer; Microsoft Clarity kullanım haritaları ve oturum kayıtları oluşturabilir. Bu araçlar yalnızca çerez tercih panelinde kabul etmenizden sonra yüklenir. Reddetmeniz halinde yüklenmez; tercihinizi sayfadaki “Çerez tercihleri” düğmesinden değiştirebilirsiniz. Tercihiniz tarayıcınızın yerel saklama alanında tutulur. Dış bağlantılara geçildiğinde ya da cihaz videosu başlatıldığında ilgili üçüncü tarafın çerez politikası geçerli olabilir.</p>
     </div></section>
   </main><Footer /></>;
 }

@@ -7,7 +7,7 @@ import { articleBySlug, articles } from "./blog-all";
 import { blogImages } from "./blog-images";
 import { relatedBlogForService } from "./blog-related";
 import { BlogArticle, BlogIndex } from "./blog-view";
-import { company, references } from "./data";
+import { company, references, referenceNames } from "./data";
 import { equipmentDetails, type EquipmentSlug } from "./equipment-details";
 import { allLocalizedServices } from "./localized-extra";
 import { localizedEquipment } from "./localized-equipment";
@@ -18,7 +18,7 @@ import { articlePath, cityPath, equipmentPath, sectionPath, sectionSegments, ser
 import { cityPages, equipment } from "./seo-data";
 import { breadcrumbSchema, pageMetadata, siteUrl } from "./seo-metadata";
 import { LanguageMenu } from "./language-menu";
-import { EquipmentVideo } from "./cihaz-parkuru/equipment-video";
+import { EquipmentVideo } from "./(tr)/cihaz-parkuru/equipment-video";
 
 type Props = { params: Promise<{ locale: string; segments?: string[] }> };
 type PageInfo = { kind: SectionKey | "service" | "equipment-detail" | "city" | "article"; slug?: string; trSlug?: string; articleId?: string };
@@ -76,7 +76,8 @@ export async function localizedMetadata({ params }: Props): Promise<Metadata> {
   const title = article?.title ?? service?.title ?? (deviceIndex >= 0 ? `${t.equipment.items[deviceIndex][0]} ${equipment[deviceIndex].code}` : city ? `${city} ${t.city.title}` : info.kind === "home" ? t.home.title : t.nav[info.kind as SectionKey]);
   const description = article?.description ?? service?.summary ?? (deviceIndex >= 0 ? t.equipment.lead : city ? `${city}: ${t.city.planText}` : info.kind === "home" ? t.home.lead : t[info.kind as "about" | "activities" | "solutions" | "partners" | "references" | "contact" | "faq" | "privacy"]?.lead ?? t.home.expertiseLead);
   const p = paths(info);
-  return pageMetadata({ title: `${title} | BES Energy`, description, path: p[locale], image: article ? blogImages[article.id].src : deviceIndex >= 0 ? equipment[deviceIndex].image : undefined, locale: locale === "en" ? "en_US" : "ar_AR", languages: { tr: p.tr, en: p.en, ar: p.ar, "x-default": p.tr } });
+  const distinctTitle = article ? `${locale === "en" ? "Technical guide" : "دليل فني"}: ${title}` : title;
+  return pageMetadata({ title: `${distinctTitle} | BES Energy`, description, path: p[locale], image: article ? blogImages[article.id].src : deviceIndex >= 0 ? equipment[deviceIndex].image : undefined, locale: locale === "en" ? "en_US" : "ar_AR", languages: { tr: p.tr, en: p.en, ar: p.ar, "x-default": p.tr } });
 }
 
 function Header({ locale }: { locale: Locale }) {
@@ -91,7 +92,7 @@ function Header({ locale }: { locale: Locale }) {
 
 function Footer({ locale }: { locale: Locale }) {
   const t = ui[locale];
-  return <><section className="bes-cta-band"><div className="shell bes-cta-inner"><div><span className="kicker">BES ENERGY</span><h2>{copy[locale].supportTitle}</h2><p>{copy[locale].supportText}</p></div><div><a className="bes-button bes-button-light" href={`tel:${company.phone}`}>{t.call}</a><Link className="bes-button bes-button-outline-light" href={sectionPath(locale,"contact")}>{t.request}</Link></div></div></section>
+  return <><section className="reference-strip" aria-label={t.nav.references}><div className="shell reference-strip-head"><span className="kicker">{t.nav.references}</span><Link className="reference-all-link" href={sectionPath(locale,"references")}>{t.all} →</Link></div><div className="reference-marquee"><div className="reference-marquee-track">{[...references,...references].map((item,index)=><div className="reference-logo" key={`${item}-${index}`}>{item === "tcdd" ? <span className="reference-typemark" aria-label={referenceNames[index % references.length]}>TCDD</span> : <Image src={`/images/${item}`} alt={`${referenceNames[index % references.length]} logo`} width={180} height={90}/>}</div>)}</div></div></section><section className="bes-cta-band"><div className="shell bes-cta-inner"><div><span className="kicker">BES ENERGY</span><h2>{copy[locale].supportTitle}</h2><p>{copy[locale].supportText}</p></div><div><a className="bes-button bes-button-light" href={`tel:${company.phone}`}>{t.call}</a><Link className="bes-button bes-button-outline-light" href={sectionPath(locale,"contact")}>{t.request}</Link></div></div></section>
     <footer className="bes-footer"><div className="shell bes-footer-grid"><div><Link href={sectionPath(locale,"home")} className="bes-footer-brand"><Image src="/images/bes-enerji-2026-logo.jpg" alt="BES Energy" width={220} height={87}/></Link><p>BES Taahhüt Enerji Sanayi ve Ticaret Ltd. Şti.</p><p>{t.working}</p></div><div><h3>{t.nav.services}</h3>{allLocalizedServices[locale].slice(0,6).map(item => <Link key={item.slug} href={servicePath(locale,item.tr)}>{item.title}</Link>)}</div><div><h3>{t.nav.about}</h3>{(["about","activities","equipment","partners","references","blog","faq","privacy"] as SectionKey[]).map(key => <Link key={key} href={sectionPath(locale,key)}>{t.nav[key]}</Link>)}</div><div><h3>{t.nav.contact}</h3><a href={`tel:${company.phone}`}>{company.phoneDisplay}</a><a href={`mailto:${company.email}`}>{company.email}</a><a href={`mailto:${company.serviceEmail}`}>{company.serviceEmail}</a><p>{company.address}</p></div></div><div className="shell bes-copyright">© 2026 BES Energy</div></footer>
     <div className="sticky-actions"><a className="emergency-action" href={`tel:${company.phone}`}>{t.emergency}</a><a href="https://wa.me/905532124761" target="_blank" rel="noreferrer">{t.whatsapp}</a></div></>;
 }

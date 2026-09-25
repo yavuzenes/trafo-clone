@@ -10,6 +10,13 @@ const translatedTopPages: Record<string, { en: string; ar: string }> = {
   "/kurumsal": { en: "/en/about", ar: "/ar/عن-الشركة" },
   "/cozumler": { en: "/en/projects", ar: "/ar/المشاريع" },
   "/iletisim": { en: "/en/contact", ar: "/ar/اتصل-بنا" },
+  "/faaliyet-alanlari": { en: "/en/activities", ar: "/ar/مجالات-العمل" },
+  "/cihaz-parkuru": { en: "/en/equipment", ar: "/ar/الأجهزة" },
+  "/yetkili-servisler": { en: "/en/partners", ar: "/ar/الشركاء" },
+  "/referanslar": { en: "/en/references", ar: "/ar/المراجع" },
+  "/sss": { en: "/en/faq", ar: "/ar/الأسئلة-الشائعة" },
+  "/kvkk": { en: "/en/privacy", ar: "/ar/الخصوصية" },
+  "/blog": { en: "/en/blog", ar: "/ar/المدونة" },
 };
 
 type PageMeta = {

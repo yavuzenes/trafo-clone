@@ -1,24 +1,28 @@
 import type { MetadataRoute } from "next";
 import { allServices } from "./core-services";
-import { locales, translatedServices } from "./localized";
+import { locales } from "./localized";
+import { allLocalizedServices } from "./localized-extra";
+import { articlePath, cityPath, equipmentPath, sectionPath, sectionSegments, servicePath, type SectionKey } from "./locale-routes";
+import { articles } from "./blog-all";
 import { cityPages, equipment } from "./seo-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.besenerji.net";
   const tr = [
     "", "/hizmetler", "/kurumsal", "/cozumler", "/faaliyet-alanlari",
-    "/cihaz-parkuru", "/yetkili-servisler", "/referanslar", "/iletisim", "/sss", "/kvkk",
+    "/cihaz-parkuru", "/yetkili-servisler", "/referanslar", "/iletisim", "/sss", "/kvkk", "/blog",
+    ...articles.tr.map(article => articlePath("tr",article.id)),
     ...equipment.map(item => `/cihaz-parkuru/${item.code.toLowerCase()}`),
     ...allServices.map(service => `/hizmetler/${service.slug}`),
     ...cityPages.map(city => `/trafo-bakimi/${city.slug}`),
   ];
   const localized = locales.flatMap(locale => [
-    `/${locale}`,
-    `/${locale}/${locale === "en" ? "services" : "الخدمات"}`,
-    `/${locale}/${locale === "en" ? "about" : "عن-الشركة"}`,
-    `/${locale}/${locale === "en" ? "projects" : "المشاريع"}`,
-    `/${locale}/${locale === "en" ? "contact" : "اتصل-بنا"}`,
-    ...translatedServices[locale].map(service => `/${locale}/${locale === "en" ? "services" : "الخدمات"}/${service.slug}`),
+    sectionPath(locale,"home"),
+    ...(Object.keys(sectionSegments) as Exclude<SectionKey,"home">[]).map(key => sectionPath(locale,key)),
+    ...allLocalizedServices[locale].map(service => servicePath(locale,service.tr)),
+    ...articles[locale].map(article => articlePath(locale,article.id)),
+    ...equipment.map(item => equipmentPath(locale,item.code)),
+    ...cityPages.map(city => cityPath(locale,city.slug)),
   ]);
   return [...tr, ...localized].map(url => ({
     url: `${base}${url}`,

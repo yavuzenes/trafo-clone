@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumb, Footer, Header } from "../../components";
 import { cityPages } from "../../seo-data";
 import { breadcrumbSchema, pageMetadata, siteUrl } from "../../seo-metadata";
+import { cityPath } from "../../locale-routes";
 
 type Props = { params: Promise<{ city: string }> };
 
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${item.name} Trafo Bakımı ve Onarımı | Arıza ve Test | BES Enerji`,
       description: `${localName} için trafo bakım ve onarım, arıza tespiti, OG hücre kontrolü ve elektriksel test planı. BES Enerji ile tesisinize uygun teknik kapsamı görüşün.`,
       path: `/trafo-bakimi/${item.slug}`,
+      languages: { tr: cityPath("tr",item.slug), en: cityPath("en",item.slug), ar: cityPath("ar",item.slug), "x-default": cityPath("tr",item.slug) },
     }),
   };
 }

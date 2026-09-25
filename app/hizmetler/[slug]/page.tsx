@@ -7,6 +7,8 @@ import { company } from "../../data";
 import { allServices } from "../../core-services";
 import { coreContent } from "../../core-service-content";
 import { cityPages } from "../../seo-data";
+import { articlesTr } from "../../blog-data";
+import { articlePath, servicePath } from "../../locale-routes";
 import { breadcrumbSchema, pageMetadata, siteUrl } from "../../seo-metadata";
 
 export function generateStaticParams() { return allServices.map(s => ({ slug: s.slug })); }
@@ -15,10 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const s = allServices.find(x => x.slug === slug);
   if (!s) return {};
-  const enSlugs = ["transformer-maintenance-repair","transformer-testing","transformer-oil-analysis","dry-type-transformer-maintenance","circuit-breaker-maintenance-testing","testing-commissioning"];
-  const arSlugs = ["صيانة-وإصلاح-المحولات","اختبارات-المحولات","تحليل-زيت-المحولات","صيانة-المحولات-الجافة","صيانة-واختبار-القواطع","الاختبار-والتشغيل"];
-  const index = allServices.indexOf(s), path = `/hizmetler/${s.slug}`;
-  const languages = index < 6 ? { tr: path, en: `/en/services/${enSlugs[index]}`, ar: `/ar/الخدمات/${arSlugs[index]}`, "x-default": path } : undefined;
+  const path = servicePath("tr",s.slug);
+  const languages = { tr: path, en: servicePath("en",s.slug), ar: servicePath("ar",s.slug), "x-default": path };
   return pageMetadata({ title: `${s.title} | BES Enerji`, description: s.summary, path, image: s.image, languages });
 }
 
@@ -38,6 +38,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     <section className="section"><div className="shell content-grid"><div><span className="kicker">Hizmet kapsamı</span><h2>Sahada uyguladığımız kontroller</h2><p className="lead">Kapsam, keşif sonrasında ekipman ve tesis koşullarına göre kesinleştirilir.</p></div><ul className="check-list">{s.scope.map(x=><li key={x}>{x}</li>)}</ul></div></section>
     <section className="soft-section"><div className="shell"><span className="kicker">Nasıl çalışıyoruz?</span><h2>Planlı, güvenli ve izlenebilir süreç.</h2><div className="process-grid">{s.process.map((p,i)=><article key={p.title}><span>0{i+1}</span><h3>{p.title}</h3><p>{p.text}</p></article>)}</div></div></section>
     <section className="section"><div className="shell faq-grid"><div><span className="kicker">Sık sorulan sorular</span><h2>{s.shortTitle} hakkında merak edilenler.</h2></div><div>{s.faq.map(x=><details key={x.q}><summary>{x.q}</summary><p>{x.a}</p></details>)}</div></div></section>
-    {slug === "trafo-bakim-ve-onarimi" && <section className="section city-links"><div className="shell"><span className="kicker">İL BAZINDA TEKNİK BİLGİ</span><h2>Trafo bakım ve arıza talepleri</h2><p>Ankara merkezli ekibimiz için saha planı, talebin ve ekip uygunluğunun değerlendirilmesiyle netleşir.</p><div><div>{cityPages.map(city=><Link key={city.slug} href={`/trafo-bakimi/${city.slug}`}>{city.name} trafo bakımı</Link>)}</div></div></div></section>}
+    {articlesTr.some(article => article.service === slug) && <section className="section"><div className="shell"><span className="kicker">TEKNİK REHBERLER</span><h2>Bu hizmetle ilgili teknik bilgiler</h2><div className="blog-related-grid">{articlesTr.filter(article => article.service === slug).map(article => <Link key={article.id} href={articlePath("tr",article.id)}>{article.title} →</Link>)}</div></div></section>}
+    {slug === "trafo-bakim-ve-onarimi" && <section className="section city-links"><div className="shell"><span className="kicker">İL BAZINDA TEKNİK BİLGİ</span><h2>Trafo bakım ve arıza talepleri</h2><p>Ankara merkezli ekibimiz için saha planı, talebin ve ekip uygunluğunun değerlendirilmesiyle netleşir.</p><div className="city-link-grid">{cityPages.map(city=><Link key={city.slug} href={`/trafo-bakimi/${city.slug}`}>{city.name} trafo bakımı</Link>)}</div></div></section>}
   </main><Footer/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema).replace(/</g,"\\u003c")}}/></>;
 }

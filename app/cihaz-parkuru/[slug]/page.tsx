@@ -7,6 +7,7 @@ import { equipment } from "../../seo-data";
 import { equipmentDetails, type EquipmentSlug } from "../../equipment-details";
 import { pageMetadata } from "../../seo-metadata";
 import { EquipmentVideo } from "../equipment-video";
+import { equipmentPath } from "../../locale-routes";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const item = equipment.find(entry => entry.code.toLowerCase() === slug);
   if (!item) return {};
-  return pageMetadata({ title: `${item.name} ${item.code} | BES Enerji Cihaz Parkuru`, description: equipmentDetails[slug as EquipmentSlug].intro, path: `/cihaz-parkuru/${slug}`, image: item.image });
+  return pageMetadata({ title: `${item.name} ${item.code} | BES Enerji Cihaz Parkuru`, description: equipmentDetails[slug as EquipmentSlug].intro, path: equipmentPath("tr",slug), image: item.image, languages: { tr: equipmentPath("tr",slug), en: equipmentPath("en",slug), ar: equipmentPath("ar",slug), "x-default": equipmentPath("tr",slug) } });
 }
 
 export default async function EquipmentPage({ params }: Props) {

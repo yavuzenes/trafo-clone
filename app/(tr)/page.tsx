@@ -13,6 +13,7 @@ const quickServices = [
   { icon: "⚡", title: "Arıza tespiti ve onarım", text: "Trafo, OG hücre ve yüksek gerilim arızalarında ölçüme dayalı teşhis ve kontrollü müdahale.", href: "/hizmetler/trafo-ariza-tespiti-ve-giderilmesi" },
   { icon: "↻", title: "Planlı bakım", text: "İşletme sürekliliği için trafo ve hücre ekipmanlarında önleyici bakım.", href: "/hizmetler/trafo-bakim-ve-onarimi" },
   { icon: "✓", title: "Test ve ölçüm", text: "Elektriksel bulgular, teknik değerlendirme ve raporlama ile karar desteği.", href: "/hizmetler/trafo-testleri" },
+  { icon: "YG", title: "YG işletme sorumluluğu", text: "YGTİS belgeli mühendisle yüksek gerilim tesislerinde güvenli işletme, saha gözetimi ve teknik raporlama.", href: "/hizmetler/yuksek-gerilim-isletme-sorumlulugu" },
 ];
 
 const fieldPhotos = [

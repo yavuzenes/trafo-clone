@@ -8,6 +8,23 @@ const process = [
 
 const newServices: Service[] = [
   {
+    slug: "yuksek-gerilim-isletme-sorumlulugu", title: "Yüksek Gerilim İşletme Sorumluluğu", shortTitle: "YG İşletme Sorumluluğu", eyebrow: "YGTİS belgeli mühendis • Güvenli işletme • Teknik kayıt", image: "/images/resim-6.jpeg",
+    summary: "YG tesislerinde YGTİS belgeli mühendis desteğiyle işletme güvenliği, periyodik saha gözetimi, bakım koordinasyonu ve teknik raporlama.",
+    intro: "BES Enerji, güncel YGTİS belgesine sahip mühendisiyle yüksek gerilim tesislerinin güvenli işletilmesi için teknik sorumluluk hizmeti sunar. Tesisin tek hat şeması, ekipman durumu, işletme kayıtları ve saha riskleri birlikte değerlendirilir.",
+    benefits: ["Mevzuat ve işletme gerekliliklerinin düzenli takibini destekler", "Arıza ve bakım risklerini kayıtlı saha gözlemleriyle görünür kılar", "İşletme personeli ile teknik müdahaleler arasında koordinasyon sağlar"],
+    scope: ["YG tesisinin ilk teknik incelemesi ve tek hat şeması kontrolü", "YGTİS belgeli mühendis ile işletme sorumluluğu sözleşmesi ve görev kapsamı", "Periyodik saha ziyaretleri ve işletme kayıtlarının incelenmesi", "Güvenli manevra ve çalışma talimatlarının gözden geçirilmesi", "Topraklama, koruma, trafo ve OG hücre bakım ihtiyaçlarının takibi", "Arıza, bakım ve dağıtım şirketi koordinasyonuna teknik destek", "Bulgular, öneriler ve takip aksiyonları için teknik raporlama"],
+    process: [
+      { title: "Tesis incelemesi", text: "Tek hat şeması, ekipman, işletme personeli ve mevcut belgeler yerinde değerlendirilir." },
+      { title: "Sorumluluk planı", text: "Sözleşme, ziyaret takvimi, güvenli işletme talimatları ve bakım öncelikleri belirlenir." },
+      { title: "Saha gözetimi ve rapor", text: "Periyodik kontrollerde bulgular kayıt altına alınır; düzeltici işler işletmeyle takip edilir." },
+    ],
+    faq: [
+      { q: "YG işletme sorumluluğu hangi tesisler için gereklidir?", a: "1 kV üzerindeki yüksek gerilim tesisleri için ilgili mevzuatın öngördüğü işletme sorumluluğu düzeni değerlendirilir. Tesisin bağlantı ve personel yapısına göre sözleşme ve görevlendirme şekli belirlenir." },
+      { q: "İşletme sorumlusu hangi kontrolleri yapar?", a: "Tesisin güvenli işletilmesini gözetir; tek hat şeması, manevra talimatları, koruyucu donanım, bakım ve test kayıtları ile işletme personelinin bilgilendirilmesi gibi başlıkları takip eder." },
+      { q: "İşletme sorumluluğu bakım ve onarımın yerine geçer mi?", a: "Hayır. İşletme sorumluluğu teknik gözetim ve koordinasyonu kapsar; trafo veya hücre bakımı, test ve onarım işleri ayrıca planlanır." },
+    ],
+  },
+  {
     slug: "trafo-ariza-tespiti-ve-giderilmesi", title: "Trafo Arıza Tespiti ve Giderilmesi", shortTitle: "Trafo Arıza", eyebrow: "Kök neden • Onarım • Doğrulama", image: "/images/resim-2.jpeg",
     summary: "Trafo arızalarında belirti analizi, elektriksel testler, kök neden araştırması ve kontrollü onarım.",
     intro: "Aşırı ısınma, yağ kaçağı, anormal ses veya koruma açması tek bir arızaya işaret etmeyebilir. Müdahaleyi ölçüm ve ekipman geçmişiyle temellendiriyoruz.",

@@ -29,6 +29,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const content = coreContent[slug], path = `/hizmetler/${slug}`;
   const schema = { "@context": "https://schema.org", "@graph": [
     { "@type": "Service", name: s.title, description: s.summary, url: `${siteUrl}${path}`, provider: { "@type": "Organization", name: "BES Enerji", url: siteUrl, telephone: company.phone }, areaServed: { "@type": "Country", name: "Türkiye" } },
+    { "@type": "FAQPage", mainEntity: s.faq.map(item => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })) },
     breadcrumbSchema([{ name: "Ana Sayfa", path: "/" }, { name: "Hizmetler", path: "/hizmetler" }, { name: s.title, path }]),
   ] };
   return <><Header/><main>

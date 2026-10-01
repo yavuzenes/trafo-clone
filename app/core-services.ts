@@ -122,4 +122,5 @@ export const coreGroups = [
   { title: "Trafo hizmetleri", eyebrow: "01 — 03", description: "Bakım, arıza teşhisi ve test", services: coreServices.slice(0, 3) },
   { title: "OG hücre hizmetleri", eyebrow: "04 — 06", description: "Anahtarlama, koruma ve doğrulama", services: coreServices.slice(3, 6) },
   { title: "Mühendislik ve saha uygulaması", eyebrow: "07 — 09", description: "Proje, taahhüt ve müdahale", services: coreServices.slice(6, 9) },
+  { title: "Yüksek gerilim işletme sorumluluğu", eyebrow: "10", description: "YGTİS belgeli mühendisle güvenli işletme ve teknik gözetim", services: allServices.filter(service => service.slug === "yuksek-gerilim-isletme-sorumlulugu") },
 ];

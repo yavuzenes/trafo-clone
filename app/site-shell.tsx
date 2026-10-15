@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { pageMetadata, siteUrl } from "./seo-metadata";
-import { company } from "./data";
+import { company, linkedinUrl } from "./data";
 import { AnalyticsConsent } from "./analytics-consent";
 
 const siteSchema = {
@@ -15,6 +15,7 @@ const siteSchema = {
       url: siteUrl,
       description: "Ankara merkezli deneyimli mühendis ve teknik saha ekibiyle trafo ve OG hücre arıza, bakım, test ve onarım hizmetleri.",
       logo: `${siteUrl}/images/bes-enerji-2026-logo.jpg`,
+      sameAs: [linkedinUrl],
       telephone: company.phone,
       email: company.email,
       address: { "@type": "PostalAddress", streetAddress: "29 Ekim Mahallesi 778. Cadde No: 7/5", addressLocality: "Sincan", addressRegion: "Ankara", addressCountry: "TR" },
@@ -25,8 +26,8 @@ const siteSchema = {
 export const siteMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
   ...pageMetadata({
-    title: "Trafo Bakım, Arıza, Test ve Onarım | BES Enerji",
-    description: "BES Enerji; trafo arıza tespiti, bakım, test ve onarım, OG hücre ve kesici bakımı ile YG teknik saha hizmetleri için ölçüme dayalı çözümler sunar.",
+    title: "Ankara Trafo Bakım, Arıza ve Onarım | BES Enerji",
+    description: "Ankara Sincan merkezli BES Enerji; trafo bakım ve onarımı, arıza tespiti, trafo testleri, OG hücre bakımı ve YG işletme sorumluluğu hizmetleri sunar.",
     path: "/",
     languages: { tr: "/", en: "/en", ar: "/ar", "x-default": "/" },
   }),

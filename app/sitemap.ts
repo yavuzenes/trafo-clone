@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [...tr, ...localized].map(url => ({
     url: `${base}${url}`,
     ...(updatedBlogPaths.has(url) ? { lastModified: new Date("2026-09-25T00:00:00+03:00") } : {}),
+    ...((url === "" || url === "/trafo-bakimi/ankara") ? { lastModified: new Date("2026-10-15T00:00:00+03:00") } : {}),
     changeFrequency: url === "" ? "weekly" : "monthly",
     priority: url === "" ? 1 : url.startsWith("/trafo-bakimi/") ? .85 : .8,
   }));
